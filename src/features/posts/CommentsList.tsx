@@ -12,7 +12,7 @@ const CommentsList: FC<{ comments: CommentsState[] }> = ({ comments }) => {
         return (
           <div key={comment.id} className="flex">
             <Card
-              style={{ backgroundColor: "#f7f7f7" }}
+              style={{ backgroundColor: "#f9f9f9" }}
               className="flex comment"
               variant="outlined"
               sx={{ minWidth: 700, maxWidth: 700, padding: 1.2 }}
