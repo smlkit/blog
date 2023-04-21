@@ -21,9 +21,9 @@ const CommentsList: FC<{ comments: CommentsState[] }> = ({ comments }) => {
               <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                   {comment.email}
-                  <Typography variant="h5" component="div">
-                    by user #{comment.id}
-                  </Typography>
+                </Typography>
+                <Typography variant="h5" component="div">
+                  by user #{comment.id}
                 </Typography>
                 <Typography variant="body2">{comment.body}</Typography>
               </CardContent>

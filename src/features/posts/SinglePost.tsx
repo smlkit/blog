@@ -8,6 +8,7 @@ import Post from "./Post";
 import CommentsList from "./CommentsList";
 import Button from "@mui/material/Button";
 import ArrowBack from "@mui/icons-material/ArrowBack";
+import CircularProgress from "@mui/joy/CircularProgress";
 
 const SinglePost = () => {
   const navigate = useNavigate();
@@ -28,12 +29,16 @@ const SinglePost = () => {
       {post && statusPost === StatusOfRequestEnum.SUCCESS && <Post post={post} btn={false} />}
       <div className="wrapper">
         <Button variant="contained" onClick={() => navigate(`/`)}>
-          <ArrowBack></ArrowBack>
+          <ArrowBack />
           back to all posts
         </Button>
       </div>
       {comments && statusComments === StatusOfRequestEnum.SUCCESS && <CommentsList comments={comments} />}
-      {statusPost === StatusOfRequestEnum.LOADING && <p>Loading...</p>}
+      <div className="flex progress">
+        {(statusPost === StatusOfRequestEnum.LOADING || statusComments === StatusOfRequestEnum.LOADING) && (
+          <CircularProgress variant="solid" />
+        )}
+      </div>
       {statusPost === StatusOfRequestEnum.ERROR && <p>{errorPost}</p>}
     </>
   );

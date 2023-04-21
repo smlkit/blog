@@ -6,6 +6,7 @@ import { StatusOfRequestEnum } from "../../types/enums/StatusOfRequestEnum";
 import Post from "./Post";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import CircularProgress from "@mui/joy/CircularProgress";
 
 function PostsList() {
   const dispatch = useDispatch<AppDispatch>();
@@ -36,7 +37,7 @@ function PostsList() {
       {status === StatusOfRequestEnum.SUCCESS &&
         posts.map((post) => <Post post={post} btn={true} key={post.id} />)}
 
-      {status === StatusOfRequestEnum.LOADING && <p>Loading...</p>}
+      {status === StatusOfRequestEnum.LOADING && <CircularProgress variant="solid" />}
 
       {status === StatusOfRequestEnum.ERROR && <p>{error}</p>}
     </section>
