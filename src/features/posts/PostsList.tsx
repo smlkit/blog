@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { AppDispatch } from "../../app/store";
 import { StatusOfRequestEnum } from "../../types/enums/StatusOfRequestEnum";
 import Post from "./Post";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 function PostsList() {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,7 +20,17 @@ function PostsList() {
     <section className="post-list">
       <h2>BLOG POSTS</h2>
       <div>
-        <input type="text" onChange={(e) => setFilterString(e.target.value)} value={filterString} />
+        <TextField
+          id="outlined-basic"
+          label="Filter"
+          variant="outlined"
+          size="small"
+          onChange={(e) => setFilterString(e.target.value)}
+          value={filterString}
+        />
+        <Button variant="contained" size="medium" onClick={() => setFilterString("")}>
+          Clear
+        </Button>
       </div>
 
       {status === StatusOfRequestEnum.SUCCESS &&

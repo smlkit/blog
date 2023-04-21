@@ -113,6 +113,5 @@ export const filteredPostsSelector = (value: string) =>
     ...other,
     data: data.filter((item) => item.title.includes(value)),
   }));
-// export const selectAllPosts = (state: RootState) => state.posts.fetchPosts.data;
 
 export default postsSlice.reducer;
