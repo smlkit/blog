@@ -17,12 +17,25 @@ interface PostsSlice {
     error: string | null;
     data: PostsState | null;
   };
+  fetchComments: {
+    status: StatusOfRequestEnum;
+    error: string | null;
+    data: CommentsState[];
+  };
 }
 
 export interface PostsState {
   userId: number;
   id: number;
   title: string;
+  body: string;
+}
+
+export interface CommentsState {
+  postId: number;
+  id: number;
+  name: string;
+  email: string;
   body: string;
 }
 
@@ -36,6 +49,11 @@ const initialState: PostsSlice = {
     status: StatusOfRequestEnum.IDLE,
     error: null,
     data: null,
+  },
+  fetchComments: {
+    status: StatusOfRequestEnum.IDLE,
+    error: null,
+    data: [],
   },
 };
 
@@ -57,6 +75,19 @@ export const fetchSinglePost = createAsyncThunk<PostsState, number | string, { r
   async (postID, { rejectWithValue }) => {
     try {
       const response = await axios.get(SINGLE_POST_URL + postID);
+      return response.data;
+    } catch (error) {
+      if (isAxiosError(error)) return rejectWithValue(error.message);
+      return rejectWithValue("unknown error");
+    }
+  }
+);
+
+export const fetchComments = createAsyncThunk<CommentsState[], number | string, { rejectValue: string }>(
+  "posts/fetchComments",
+  async (postID, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(SINGLE_POST_URL + postID + `/comments`);
       return response.data;
     } catch (error) {
       if (isAxiosError(error)) return rejectWithValue(error.message);
@@ -100,6 +131,21 @@ const postsSlice = createSlice({
         state.fetchSinglePost.error = action.payload || "unknown error";
         state.fetchSinglePost.status = StatusOfRequestEnum.ERROR;
         state.fetchSinglePost.data = null;
+      })
+      .addCase(fetchComments.pending, (state) => {
+        state.fetchComments.status = StatusOfRequestEnum.LOADING;
+        state.fetchComments.error = null;
+        state.fetchComments.data = [];
+      })
+      .addCase(fetchComments.fulfilled, (state, action) => {
+        state.fetchComments.status = StatusOfRequestEnum.SUCCESS;
+        state.fetchComments.error = null;
+        state.fetchComments.data = action.payload;
+      })
+      .addCase(fetchComments.rejected, (state, action) => {
+        state.fetchComments.error = action.payload || "unknown error";
+        state.fetchComments.status = StatusOfRequestEnum.ERROR;
+        state.fetchComments.data = [];
       });
   },
 });
@@ -113,5 +159,6 @@ export const filteredPostsSelector = (value: string) =>
     ...other,
     data: data.filter((item) => item.title.includes(value)),
   }));
+export const fetchCommentsSelector = createSelector(selfSelector, (state) => state.fetchComments);
 
 export default postsSlice.reducer;

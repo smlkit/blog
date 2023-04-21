@@ -16,7 +16,7 @@ const Post: FC<{ post: PostsState; btn: boolean }> = ({ post, btn }) => {
 
   return (
     <div className="wrapper">
-      <Card variant="outlined" sx={{ maxWidth: 600, padding: 1.5 }}>
+      <Card variant="outlined" sx={{ maxWidth: 700, padding: 1.5 }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             post №{post.id}

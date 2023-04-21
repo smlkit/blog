@@ -13,6 +13,12 @@
   justify-content: center;
 }
 
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .post-list {
   display: flex;
   flex-direction: column;
@@ -25,4 +31,11 @@
 .post-list h2 {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
+}
+
+.comments-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
