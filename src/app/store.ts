@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import postsReducer from "../features/posts/postsSlice";
 import { useDispatch } from "react-redux";
+
+import postsReducer from "../features/posts/postsSlice";
+import commentsReducer from "../features/comments/commentsSlice";
 
 export const store = configureStore({
   reducer: {
     posts: postsReducer,
+    comments: commentsReducer,
   },
 });
 

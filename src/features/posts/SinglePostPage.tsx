@@ -1,19 +1,27 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { fetchSinglePost, fetchSinglePostSelector, fetchComments, fetchCommentsSelector } from "./postsSlice";
+
 import { StatusOfRequestEnum } from "../../types/enums/StatusOfRequestEnum";
-import Post from "./Post";
-import CommentsList from "./CommentsList";
-import Button from "@mui/material/Button";
-import ArrowBack from "@mui/icons-material/ArrowBack";
-import CircularProgress from "@mui/joy/CircularProgress";
+
+import { fetchSinglePost, fetchSinglePostSelector } from "./postsSlice";
+import { fetchComments, fetchCommentsSelector } from "../comments/commentsSlice";
+
 import { useThunkDispatch } from "../../app/store";
+import Post from "./Post";
+import CommentsList from "../comments/CommentsList";
+import AddCommentForm from "../comments/AddCommentForm";
+import { Wrapper } from "../../styled";
+
+import { Button, CircularProgress, Stack } from "@mui/material";
+import ArrowBack from "@mui/icons-material/ArrowBack";
 
 const SinglePost = () => {
   const navigate = useNavigate();
-  const { postId } = useParams();
   const dispatch = useThunkDispatch();
+
+  const { postId } = useParams();
+
   const { data: post, error: errorPost, status: statusPost } = useSelector(fetchSinglePostSelector);
   const { data: comments, error: errorComments, status: statusComments } = useSelector(fetchCommentsSelector);
 
@@ -25,22 +33,21 @@ const SinglePost = () => {
   }, []);
 
   return (
-    <>
-      {post && statusPost === StatusOfRequestEnum.SUCCESS && <Post post={post} btn={false} />}
-      <div className="wrapper">
+    <Wrapper>
+      <Stack spacing={2}>
+        {post && statusPost === StatusOfRequestEnum.SUCCESS && <Post post={post} btn={false} />}
         <Button variant="contained" onClick={() => navigate(`/`)}>
           <ArrowBack />
           back to all posts
         </Button>
-      </div>
+      </Stack>
+      <AddCommentForm postId={Number(postId)} />
       {comments && statusComments === StatusOfRequestEnum.SUCCESS && <CommentsList comments={comments} />}
-      <div className="flex progress">
-        {(statusPost === StatusOfRequestEnum.LOADING || statusComments === StatusOfRequestEnum.LOADING) && (
-          <CircularProgress variant="solid" />
-        )}
-      </div>
+      {(statusPost === StatusOfRequestEnum.LOADING || statusComments === StatusOfRequestEnum.LOADING) && (
+        <CircularProgress />
+      )}
       {statusPost === StatusOfRequestEnum.ERROR && <p>{errorPost}</p>}
-    </>
+    </Wrapper>
   );
 };
 

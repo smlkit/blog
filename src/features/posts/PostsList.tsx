@@ -7,7 +7,9 @@ import Post from "./Post";
 import AddPostForm from "./AddPostForm";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import CircularProgress from "@mui/joy/CircularProgress";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Wrapper } from "../../styled";
+import { Stack, Typography } from "@mui/material";
 
 function PostsList() {
   const dispatch = useThunkDispatch();
@@ -19,12 +21,15 @@ function PostsList() {
   }, []);
 
   return (
-    <>
+    <Wrapper>
       <AddPostForm />
       <section className="post-list">
-        <h2>BLOG POSTS</h2>
-        <div>
+        <Typography variant="h3" color="text.primary">
+          Blog posts
+        </Typography>
+        <Stack direction="row" spacing={2}>
           <TextField
+            style={{ width: "610px" }}
             id="outlined-basic"
             label="Filter"
             variant="outlined"
@@ -35,16 +40,16 @@ function PostsList() {
           <Button variant="contained" size="medium" onClick={() => setFilterString("")}>
             Clear
           </Button>
-        </div>
+        </Stack>
 
         {status === StatusOfRequestEnum.SUCCESS &&
           posts.map((post) => <Post post={post} btn={true} key={post.id} />)}
 
-        {status === StatusOfRequestEnum.LOADING && <CircularProgress variant="solid" />}
+        {status === StatusOfRequestEnum.LOADING && <CircularProgress />}
 
         {status === StatusOfRequestEnum.ERROR && <p>{error}</p>}
       </section>
-    </>
+    </Wrapper>
   );
 }
 

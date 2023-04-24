@@ -6,13 +6,6 @@
   box-sizing: border-box;
 }
 
-.wrapper {
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .flex {
   display: flex;
   align-items: center;
@@ -47,4 +40,9 @@
 
 .add-form {
   flex-direction: column;
+}
+
+.add-comment {
+  flex-direction: column;
+  justify-content: flex-start;
 }
