@@ -11,12 +11,12 @@ const Post: FC<{ post: PostsState; btn: boolean }> = ({ post, btn }) => {
   const navigate = useNavigate();
 
   const goToPost = () => {
-    navigate(`/post/${post.id}`);
+    navigate(`/posts/${post.id}`);
   };
 
   return (
     <div className="wrapper">
-      <Card variant="outlined" sx={{ maxWidth: 700, padding: 1.5 }}>
+      <Card variant="outlined" sx={{ maxWidth: 700, minWidth: 700, padding: 1.5 }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             post №{post.id}

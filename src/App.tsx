@@ -7,7 +7,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<PostsList />}></Route>
-        <Route path="/post/:postId" element={<SinglePost />}></Route>
+        <Route path="/posts/:postId" element={<SinglePost />}></Route>
 
         {/* <Route path="*"element={<Error/>}></Route> */}
       </Routes>

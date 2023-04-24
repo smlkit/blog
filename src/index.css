@@ -35,7 +35,7 @@
 }
 
 .comments-container {
-  margin: 30px 0;
+  margin: 20px 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -43,4 +43,8 @@
 
 .progress {
   padding: 50px;
+}
+
+.add-form {
+  flex-direction: column;
 }

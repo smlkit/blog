@@ -1,7 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { AppDispatch } from "../../app/store";
+import { useSelector } from "react-redux";
 import { fetchSinglePost, fetchSinglePostSelector, fetchComments, fetchCommentsSelector } from "./postsSlice";
 import { StatusOfRequestEnum } from "../../types/enums/StatusOfRequestEnum";
 import Post from "./Post";
@@ -9,11 +8,12 @@ import CommentsList from "./CommentsList";
 import Button from "@mui/material/Button";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import CircularProgress from "@mui/joy/CircularProgress";
+import { useThunkDispatch } from "../../app/store";
 
 const SinglePost = () => {
   const navigate = useNavigate();
   const { postId } = useParams();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useThunkDispatch();
   const { data: post, error: errorPost, status: statusPost } = useSelector(fetchSinglePostSelector);
   const { data: comments, error: errorComments, status: statusComments } = useSelector(fetchCommentsSelector);
 

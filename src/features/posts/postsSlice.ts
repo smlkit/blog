@@ -3,7 +3,7 @@ import type { RootState } from "../../app/store";
 import axios, { isAxiosError } from "axios";
 import { StatusOfRequestEnum } from "../../types/enums/StatusOfRequestEnum";
 
-const POSTS_URL = "https://jsonplaceholder.typicode.com/posts";
+const POSTS_URL = "https://jsonplaceholder.typicode.com/posts?_limit=5";
 const SINGLE_POST_URL = "https://jsonplaceholder.typicode.com/posts/";
 
 interface PostsSlice {
@@ -25,8 +25,8 @@ interface PostsSlice {
 }
 
 export interface PostsState {
-  userId: number;
-  id: number;
+  userId: number | null;
+  id: number | null;
   title: string;
   body: string;
 }
@@ -96,6 +96,19 @@ export const fetchComments = createAsyncThunk<CommentsState[], number | string, 
   }
 );
 
+export const addNewPost = createAsyncThunk<PostsState, PostsState, { rejectValue: string }>(
+  "posts/addNewPost",
+  async (post, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(POSTS_URL, post);
+      return response.data;
+    } catch (error) {
+      if (isAxiosError(error)) return rejectWithValue(error.message);
+      return rejectWithValue("unknown error");
+    }
+  }
+);
+
 const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -146,6 +159,10 @@ const postsSlice = createSlice({
         state.fetchComments.error = action.payload || "unknown error";
         state.fetchComments.status = StatusOfRequestEnum.ERROR;
         state.fetchComments.data = [];
+      })
+      .addCase(addNewPost.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.fetchPosts.data.push(action.payload);
       });
   },
 });
