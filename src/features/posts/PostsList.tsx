@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 import { useThunkDispatch } from "../../app/store";
 import { StatusOfRequestEnum } from "../../types/enums/StatusOfRequestEnum";
 import Post from "./Post";
-import AddPostForm from "./AddPostForm";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Wrapper } from "../../styled";
+import { Wrapper } from "../../core/styles/wrapper/wrapper";
 import { Stack, Typography } from "@mui/material";
 
 function PostsList() {
@@ -22,9 +21,8 @@ function PostsList() {
 
   return (
     <Wrapper>
-      <AddPostForm />
       <section className="post-list">
-        <Typography variant="h3" color="text.primary">
+        <Typography variant="h4" color="text.primary">
           Blog posts
         </Typography>
         <Stack direction="row" spacing={2}>

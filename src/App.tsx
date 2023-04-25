@@ -3,6 +3,8 @@ import PostsList from "./features/posts/PostsList";
 import SinglePostPage from "./features/posts/SinglePostPage";
 import { ThemeProvider, ThemeOptions, createTheme, makeStyles } from "@mui/material/styles";
 import CustomGlobalStyles from "./core/utils-components/CustomGlobalStyles";
+import Nav from "./components/Nav";
+import AddPostForm from "./features/posts/AddPostForm";
 
 const themeOptions: ThemeOptions = {
   palette: {
@@ -31,10 +33,11 @@ function App() {
       <CustomGlobalStyles />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<PostsList />}></Route>
-          <Route path="/posts/:postId" element={<SinglePostPage />}></Route>
-
-          {/* <Route path="*"element={<Error/>}></Route> */}
+          <Route element={<Nav />}>
+            <Route path="/" element={<PostsList />}></Route>
+            <Route path="/posts/:postId" element={<SinglePostPage />}></Route>
+            <Route path="/add-post" element={<AddPostForm />}></Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

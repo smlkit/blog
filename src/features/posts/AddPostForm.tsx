@@ -1,17 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { addNewPost, PostsState } from "./postsSlice";
 import { useThunkDispatch } from "../../app/store";
-import { Wrapper } from "../../styled";
+import { Wrapper } from "../../core/styles/wrapper/wrapper";
 
 import { Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
 
 const AddPostForm = () => {
   const dispatch = useThunkDispatch();
+  const navigate = useNavigate();
 
   const [userId, setUserId] = useState(1);
   const [title, setTitle] = useState("");
@@ -28,6 +29,7 @@ const AddPostForm = () => {
 
   const onSavePost = () => {
     if (canSavePost) {
+      navigate("/");
       dispatch(addNewPost(post));
       setTitle("");
       setBody("");
@@ -35,11 +37,11 @@ const AddPostForm = () => {
   };
 
   return (
-    <Box>
+    <Wrapper>
       <Typography variant="h4" color="text.primary" gutterBottom>
         Add a new post
       </Typography>
-      <form className="flex add-form">
+      <form>
         <Stack spacing={2}>
           <TextField
             style={{ width: "700px" }}
@@ -52,7 +54,7 @@ const AddPostForm = () => {
           <TextField
             style={{ width: "700px" }}
             multiline
-            rows={4}
+            rows={6}
             label="Type something..."
             variant="outlined"
             value={body}
@@ -64,7 +66,7 @@ const AddPostForm = () => {
           </Button>
         </Stack>
       </form>
-    </Box>
+    </Wrapper>
   );
 };
 

@@ -33,7 +33,7 @@ const AddCommentForm: FC<{ postId: number }> = ({ postId }) => {
 
   return (
     <Box>
-      <Typography variant="h2" gutterBottom color="text.secondary">
+      <Typography variant="h4" gutterBottom color="text.secondary">
         Add comment
       </Typography>
       <form className="flex add-form">
