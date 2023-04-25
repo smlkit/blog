@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import { PostsState } from "./postsSlice";
 import { FC, memo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Wrapper } from "../../core/styles/wrapper/wrapper";
+import { Wrapper } from "../../core/styles/wrapper/Wrapper";
 
 const Post: FC<{ post: PostsState; btn: boolean }> = ({ post, btn }) => {
   const navigate = useNavigate();

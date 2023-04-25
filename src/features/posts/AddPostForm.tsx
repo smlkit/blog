@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { addNewPost, PostsState } from "./postsSlice";
 import { useThunkDispatch } from "../../app/store";
-import { Wrapper } from "../../core/styles/wrapper/wrapper";
+import { Wrapper } from "../../core/styles/wrapper/Wrapper";
 
 import { Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";

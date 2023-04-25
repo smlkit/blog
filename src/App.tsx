@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PostsList from "./features/posts/PostsList";
 import SinglePostPage from "./features/posts/SinglePostPage";
-import { ThemeProvider, ThemeOptions, createTheme, makeStyles } from "@mui/material/styles";
-import CustomGlobalStyles from "./core/utils-components/CustomGlobalStyles";
+import { ThemeOptions, createTheme } from "@mui/material/styles";
 import Nav from "./components/Nav";
 import AddPostForm from "./features/posts/AddPostForm";
+import CustomThemeProvider from "./core/providers/CustomThemeProvider";
 
-const themeOptions: ThemeOptions = {
+const darkThemeOptions: ThemeOptions = {
   palette: {
     mode: "dark",
     primary: {
@@ -25,12 +25,9 @@ const themeOptions: ThemeOptions = {
   },
 };
 
-const theme = createTheme(themeOptions);
-
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CustomGlobalStyles />
+    <CustomThemeProvider>
       <BrowserRouter>
         <Routes>
           <Route element={<Nav />}>
@@ -40,7 +37,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </ThemeProvider>
+    </CustomThemeProvider>
   );
 }
 

@@ -7,7 +7,7 @@ import Post from "./Post";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Wrapper } from "../../core/styles/wrapper/wrapper";
+import { Wrapper } from "../../core/styles/wrapper/Wrapper";
 import { Stack, Typography } from "@mui/material";
 
 function PostsList() {

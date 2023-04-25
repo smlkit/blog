@@ -11,7 +11,7 @@ import { useThunkDispatch } from "../../app/store";
 import Post from "./Post";
 import CommentsList from "../comments/CommentsList";
 import AddCommentForm from "../comments/AddCommentForm";
-import { Wrapper } from "../../core/styles/wrapper/wrapper";
+import { Wrapper } from "../../core/styles/wrapper/Wrapper";
 
 import { Button, CircularProgress, Stack } from "@mui/material";
 import ArrowBack from "@mui/icons-material/ArrowBack";
