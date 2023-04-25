@@ -1,17 +1,14 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-
-import { StatusOfRequestEnum } from "../../types/enums/StatusOfRequestEnum";
-
-import { fetchSinglePost, fetchSinglePostSelector } from "./postsSlice";
-import { fetchComments, fetchCommentsSelector } from "../comments/commentsSlice";
-
-import { useThunkDispatch } from "../../app/store";
-import Post from "./Post";
-import CommentsList from "../comments/CommentsList";
-import AddCommentForm from "../comments/AddCommentForm";
-import { Wrapper } from "../../core/styles/wrapper/Wrapper";
+import { StatusOfRequestEnum } from "../../core/types/enums/StatusOfRequestEnum";
+import { fetchSinglePost, fetchSinglePostSelector } from "../../core/store/postsSlice";
+import { fetchComments, fetchCommentsSelector } from "../../core/store/commentsSlice";
+import { useThunkDispatch } from "../../core/store/store";
+import Post from "../../components/simple/PostView";
+import CommentsList from "../../components/smart/CommentsList/CommentsList";
+import AddCommentForm from "../../components/smart/AddCommentForm/AddCommentForm";
+import { Wrapper } from "../../containers/wrapper/Wrapper";
 
 import { Button, CircularProgress, Stack } from "@mui/material";
 import ArrowBack from "@mui/icons-material/ArrowBack";
@@ -35,7 +32,7 @@ const SinglePost = () => {
   return (
     <Wrapper>
       <Stack spacing={2}>
-        {post && statusPost === StatusOfRequestEnum.SUCCESS && <Post post={post} btn={false} />}
+        {post && statusPost === StatusOfRequestEnum.SUCCESS && <Post post={post} />}
         <Button variant="contained" onClick={() => navigate(`/`)}>
           <ArrowBack />
           back to all posts

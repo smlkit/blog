@@ -3,18 +3,15 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { PostsState } from "./postsSlice";
+import { Post } from "../../../core/store/postsSlice";
 import { FC, memo } from "react";
-import { useNavigate } from "react-router-dom";
-import { Wrapper } from "../../core/styles/wrapper/Wrapper";
 
-const Post: FC<{ post: PostsState; btn: boolean }> = ({ post, btn }) => {
-  const navigate = useNavigate();
+interface PostViewProps {
+  post: Post;
+  goTo?: () => void;
+}
 
-  const goToPost = () => {
-    navigate(`/posts/${post.id}`);
-  };
-
+const PostView: FC<PostViewProps> = ({ post, goTo }) => {
   return (
     <Card variant="outlined" sx={{ maxWidth: 700, minWidth: 700, padding: 1.5 }}>
       <CardContent>
@@ -26,9 +23,9 @@ const Post: FC<{ post: PostsState; btn: boolean }> = ({ post, btn }) => {
         </Typography>
         <Typography variant="body2">{post.body}</Typography>
       </CardContent>
-      {btn && (
+      {goTo && (
         <CardActions>
-          <Button size="small" onClick={goToPost}>
+          <Button size="small" onClick={goTo}>
             View post
           </Button>
         </CardActions>
@@ -37,4 +34,4 @@ const Post: FC<{ post: PostsState; btn: boolean }> = ({ post, btn }) => {
   );
 };
 
-export default memo(Post);
+export default memo(PostView);

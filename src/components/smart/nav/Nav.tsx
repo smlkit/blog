@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { StyledLink } from "./StyledLink";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { NavBar } from "../core/styles/navbar/Navbar";
-import { MUISwitch } from "./Switch";
+import { NavBar } from "../../../containers/navbar/Navbar";
+import { MUISwitch } from "../../ui/ThemeSwitch";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Button from "@mui/material/Button";
-import { ColorModeContext } from "../core/providers/CustomThemeProvider";
+import { ColorModeContext } from "../../../core/theme/CustomThemeProvider";
 
 const Nav = () => {
   const location = useLocation();

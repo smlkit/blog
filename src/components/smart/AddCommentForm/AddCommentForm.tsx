@@ -1,7 +1,7 @@
 import { useState, FC } from "react";
 
-import { addNewComment, CommentsState } from "./commentsSlice";
-import { useThunkDispatch } from "../../app/store";
+import { addNewComment, Comment } from "../../../core/store/commentsSlice";
+import { useThunkDispatch } from "../../../core/store/store";
 
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -15,7 +15,7 @@ const AddCommentForm: FC<{ postId: number }> = ({ postId }) => {
   const [email, setEmail] = useState("");
   const [body, setBody] = useState("");
 
-  const comment: CommentsState = {
+  const comment: Comment = {
     postId,
     email,
     body,

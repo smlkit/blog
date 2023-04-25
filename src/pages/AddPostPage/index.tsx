@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { addNewPost, PostsState } from "./postsSlice";
-import { useThunkDispatch } from "../../app/store";
-import { Wrapper } from "../../core/styles/wrapper/Wrapper";
+import { addNewPost, Post } from "../../core/store/postsSlice";
+import { useThunkDispatch } from "../../core/store/store";
+import { Wrapper } from "../../containers/wrapper/Wrapper";
 
 import { Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -18,7 +18,7 @@ const AddPostForm = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  const post: PostsState = {
+  const post: Post = {
     userId,
     id: 0,
     title,

@@ -1,7 +1,7 @@
 import React, { FC, PropsWithChildren, createContext, useState } from "react";
 import { GlobalStyles, ThemeProvider } from "@mui/material";
-import { darkTheme } from "./theme/dark";
-import { lightTheme } from "./theme/light";
+import { darkTheme } from "./dark";
+import { lightTheme } from "./light";
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 

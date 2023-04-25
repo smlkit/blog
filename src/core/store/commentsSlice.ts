@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
-import type { RootState } from "../../app/store";
+import type { RootState } from "./store";
 import axios, { isAxiosError } from "axios";
-import { StatusOfRequestEnum } from "../../types/enums/StatusOfRequestEnum";
+import { StatusOfRequestEnum } from "../types/enums/StatusOfRequestEnum";
 
 const SINGLE_POST_URL = "https://jsonplaceholder.typicode.com/posts/";
 
@@ -9,11 +9,11 @@ interface CommentsSlice {
   fetchComments: {
     status: StatusOfRequestEnum;
     error: string | null;
-    data: CommentsState[];
+    data: Comment[];
   };
 }
 
-export interface CommentsState {
+export interface Comment {
   postId: number;
   id?: number;
   name?: string;
@@ -66,7 +66,7 @@ const commentsSlice = createSlice({
   },
 });
 
-export const fetchComments = createAsyncThunk<CommentsState[], number | string, { rejectValue: string }>(
+export const fetchComments = createAsyncThunk<Comment[], number | string, { rejectValue: string }>(
   "posts/fetchComments",
   async (postID, { rejectWithValue }) => {
     try {
@@ -79,7 +79,7 @@ export const fetchComments = createAsyncThunk<CommentsState[], number | string, 
   }
 );
 
-export const addNewComment = createAsyncThunk<CommentsState, CommentsState, { rejectValue: string }>(
+export const addNewComment = createAsyncThunk<Comment, Comment, { rejectValue: string }>(
   "posts/addNewComment",
   async (comment, { rejectWithValue }) => {
     try {

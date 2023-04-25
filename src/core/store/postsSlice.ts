@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
-import type { RootState } from "../../app/store";
+import type { RootState } from "./store";
 import axios, { isAxiosError } from "axios";
-import { StatusOfRequestEnum } from "../../types/enums/StatusOfRequestEnum";
+import { StatusOfRequestEnum } from "../types/enums/StatusOfRequestEnum";
 
 const POSTS_URL = "https://jsonplaceholder.typicode.com/posts?_limit=5";
 const SINGLE_POST_URL = "https://jsonplaceholder.typicode.com/posts/";
@@ -10,27 +10,19 @@ interface PostsSlice {
   fetchPosts: {
     status: StatusOfRequestEnum;
     error: string | null;
-    data: PostsState[];
+    data: Post[];
   };
   fetchSinglePost: {
     status: StatusOfRequestEnum;
     error: string | null;
-    data: PostsState | null;
+    data: Post | null;
   };
 }
 
-export interface PostsState {
+export interface Post {
   userId: number | null;
   id: number | null;
   title: string;
-  body: string;
-}
-
-export interface CommentsState {
-  postId: number;
-  id?: number;
-  name?: string;
-  email: string;
   body: string;
 }
 
@@ -47,7 +39,7 @@ const initialState: PostsSlice = {
   },
 };
 
-export const fetchPosts = createAsyncThunk<PostsState[], undefined, { rejectValue: string }>(
+export const fetchPosts = createAsyncThunk<Post[], undefined, { rejectValue: string }>(
   "posts/fetchPosts",
   async (_, { rejectWithValue }) => {
     try {
@@ -60,7 +52,7 @@ export const fetchPosts = createAsyncThunk<PostsState[], undefined, { rejectValu
   }
 );
 
-export const fetchSinglePost = createAsyncThunk<PostsState, number | string, { rejectValue: string }>(
+export const fetchSinglePost = createAsyncThunk<Post, number | string, { rejectValue: string }>(
   "posts/fetchSinglePost",
   async (postID, { rejectWithValue }) => {
     try {
@@ -73,7 +65,7 @@ export const fetchSinglePost = createAsyncThunk<PostsState, number | string, { r
   }
 );
 
-export const addNewPost = createAsyncThunk<PostsState, PostsState, { rejectValue: string }>(
+export const addNewPost = createAsyncThunk<Post, Post, { rejectValue: string }>(
   "posts/addNewPost",
   async (post, { rejectWithValue }) => {
     try {

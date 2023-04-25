@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import PostsList from "./features/posts/PostsList";
-import SinglePostPage from "./features/posts/SinglePostPage";
+import PostsList from "./pages/PostListPage";
+import SinglePostPage from "./pages/PostPage";
 import { ThemeOptions, createTheme } from "@mui/material/styles";
-import Nav from "./components/Nav";
-import AddPostForm from "./features/posts/AddPostForm";
-import CustomThemeProvider from "./core/providers/CustomThemeProvider";
+import Nav from "./components/smart/nav/Nav";
+import AddPostForm from "./pages/AddPostPage";
+import CustomThemeProvider from "./core/theme/CustomThemeProvider";
 
 const darkThemeOptions: ThemeOptions = {
   palette: {

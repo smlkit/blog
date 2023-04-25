@@ -6,43 +6,12 @@
   box-sizing: border-box;
 }
 
-.flex {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.post-list {
+/* for posts */
+/* .post-list {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   margin-top: 1rem;
-}
-
-.post-list h2 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  margin-bottom: 1rem;
-}
-
-.comments-container {
-  margin: 20px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.progress {
-  padding: 50px;
-}
-
-.add-form {
-  flex-direction: column;
-}
-
-.add-comment {
-  flex-direction: column;
-  justify-content: flex-start;
-}
+} */
