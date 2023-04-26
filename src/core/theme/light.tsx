@@ -15,7 +15,7 @@ const lightThemeOptions: ThemeOptions = {
     },
     text: {
       primary: "#52616B",
-      secondary: "#6d737d",
+      secondary: "#797f8a",
     },
   },
 };

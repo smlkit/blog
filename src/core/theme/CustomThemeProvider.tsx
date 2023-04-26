@@ -14,6 +14,7 @@ const CustomThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   };
 
   const theme = mode === "light" ? lightTheme : darkTheme;
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>

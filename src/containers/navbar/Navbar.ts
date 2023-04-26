@@ -1,4 +1,3 @@
-import * as React from "react";
 import { styled } from "@mui/material";
 
 export const NavBar = styled("div")(({ theme }) => ({

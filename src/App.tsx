@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CustomThemeProvider from "./core/theme/CustomThemeProvider";
+import { ThemeOptions } from "@mui/material/styles";
+import HomePage from "./pages/HomePage";
 import PostsList from "./pages/PostListPage";
 import SinglePostPage from "./pages/PostPage";
-import { ThemeOptions, createTheme } from "@mui/material/styles";
-import Nav from "./components/smart/nav/Nav";
 import AddPostForm from "./pages/AddPostPage";
-import CustomThemeProvider from "./core/theme/CustomThemeProvider";
+import AlbumsPage from "./pages/AlbumsPage";
+import Nav from "./components/smart/nav/Nav";
 
 const darkThemeOptions: ThemeOptions = {
   palette: {
@@ -31,9 +33,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Nav />}>
-            <Route path="/" element={<PostsList />}></Route>
+            <Route path="/" element={<HomePage />}></Route>
+            <Route path="/posts" element={<PostsList />}></Route>
             <Route path="/posts/:postId" element={<SinglePostPage />}></Route>
             <Route path="/add-post" element={<AddPostForm />}></Route>
+            <Route path="/albums" element={<AlbumsPage />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

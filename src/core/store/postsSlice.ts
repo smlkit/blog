@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk, createSelector } from "@reduxjs/toolkit"
 import type { RootState } from "./store";
 import axios, { isAxiosError } from "axios";
 import { StatusOfRequestEnum } from "../types/enums/StatusOfRequestEnum";
+import { Post } from "../types/modules/Post";
 
 const POSTS_URL = "https://jsonplaceholder.typicode.com/posts?_limit=5";
 const SINGLE_POST_URL = "https://jsonplaceholder.typicode.com/posts/";
@@ -17,13 +18,6 @@ interface PostsSlice {
     error: string | null;
     data: Post | null;
   };
-}
-
-export interface Post {
-  userId: number | null;
-  id: number | null;
-  title: string;
-  body: string;
 }
 
 const initialState: PostsSlice = {

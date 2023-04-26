@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { addNewPost, Post } from "../../core/store/postsSlice";
+import { addNewPost } from "../../core/store/postsSlice";
+import { Post } from "../../core/types/modules/Post";
 import { useThunkDispatch } from "../../core/store/store";
 import { Wrapper } from "../../containers/wrapper/Wrapper";
 

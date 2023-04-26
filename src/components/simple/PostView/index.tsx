@@ -3,7 +3,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Post } from "../../../core/store/postsSlice";
+import { Post } from "../../../core/types/modules/Post";
 import { FC, memo } from "react";
 
 interface PostViewProps {
@@ -18,7 +18,7 @@ const PostView: FC<PostViewProps> = ({ post, goTo }) => {
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           post №{post.id}
         </Typography>
-        <Typography variant="h5" component="div">
+        <Typography variant="h5" component="div" gutterBottom>
           {post.title}
         </Typography>
         <Typography variant="body2">{post.body}</Typography>

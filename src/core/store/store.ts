@@ -3,11 +3,13 @@ import { useDispatch } from "react-redux";
 
 import postsReducer from "./postsSlice";
 import commentsReducer from "./commentsSlice";
+import albumsReducer from "./albumsSlice";
 
 export const store = configureStore({
   reducer: {
     posts: postsReducer,
     comments: commentsReducer,
+    albums: albumsReducer,
   },
 });
 

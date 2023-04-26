@@ -7,7 +7,7 @@ const CommentsList: FC<{ comments: Comment[] }> = ({ comments }) => {
   return (
     <Stack spacing={2}>
       {comments.map((comment) => (
-        <CommentView comment={comment} />
+        <CommentView key={comment.id} comment={comment} />
       ))}
     </Stack>
   );
