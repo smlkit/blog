@@ -3,7 +3,7 @@ import { styled } from "@mui/material";
 
 export const Wrapper = styled("div")({
   display: "flex",
-  gap: "50px",
+  gap: "40px",
   padding: "30px 0",
   alignItems: "center",
   // justifyContent: "center",

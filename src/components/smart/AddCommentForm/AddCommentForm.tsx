@@ -33,8 +33,8 @@ const AddCommentForm: FC<{ postId: number }> = ({ postId }) => {
 
   return (
     <Box>
-      <Typography variant="h4" gutterBottom color="text.secondary">
-        Add comment
+      <Typography variant="h5" gutterBottom color="text.primary">
+        Add new comment
       </Typography>
       <form className="flex add-form">
         <Stack spacing={2}>
@@ -58,7 +58,7 @@ const AddCommentForm: FC<{ postId: number }> = ({ postId }) => {
             onChange={(e) => setBody(e.target.value)}
           />
 
-          <Button variant="contained" onClick={onSaveComment}>
+          <Button variant="contained" onClick={onSaveComment} sx={{ width: "100px" }}>
             Send
           </Button>
         </Stack>

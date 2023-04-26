@@ -32,11 +32,11 @@ const SinglePost = () => {
   return (
     <Wrapper>
       <Stack spacing={2}>
-        {post && statusPost === StatusOfRequestEnum.SUCCESS && <Post post={post} />}
-        <Button variant="contained" onClick={() => navigate(`/`)}>
+        <Button variant="outlined" onClick={() => navigate(`/posts`)} sx={{ width: "200px" }}>
           <ArrowBack />
           back to all posts
         </Button>
+        {post && statusPost === StatusOfRequestEnum.SUCCESS && <Post post={post} />}
       </Stack>
       <AddCommentForm postId={Number(postId)} />
       {comments && statusComments === StatusOfRequestEnum.SUCCESS && <CommentsList comments={comments} />}

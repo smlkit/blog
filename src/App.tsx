@@ -5,7 +5,8 @@ import HomePage from "./pages/HomePage";
 import PostsList from "./pages/PostListPage";
 import SinglePostPage from "./pages/PostPage";
 import AddPostForm from "./pages/AddPostPage";
-import AlbumsPage from "./pages/AlbumsPage";
+import AlbumListPage from "./pages/AlbumListPage";
+import AlbumPage from "./pages/AlbumPage";
 import Nav from "./components/smart/nav/Nav";
 
 const darkThemeOptions: ThemeOptions = {
@@ -37,7 +38,8 @@ function App() {
             <Route path="/posts" element={<PostsList />}></Route>
             <Route path="/posts/:postId" element={<SinglePostPage />}></Route>
             <Route path="/add-post" element={<AddPostForm />}></Route>
-            <Route path="/albums" element={<AlbumsPage />}></Route>
+            <Route path="/albums" element={<AlbumListPage />}></Route>
+            <Route path="/albums/:albumId" element={<AlbumPage />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

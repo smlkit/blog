@@ -18,7 +18,7 @@ const CommentView: FC<{ comment: Comment }> = ({ comment }) => {
         alignItems: "center",
       }}
     >
-      <Avatar color="primary"></Avatar>
+      <Avatar sx={{ backgroundColor: "primary" }}></Avatar>
       <CardContent>
         <Typography fontSize="14px" color="text.secondary" gutterBottom>
           {comment.email}

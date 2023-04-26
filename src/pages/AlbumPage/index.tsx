@@ -1,15 +1,17 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { Wrapper } from "../../containers/wrapper/Wrapper";
 import { Typography } from "@mui/material";
 
-const AlbumsPage = () => {
+const AlbumPage = () => {
+  const { albumId } = useParams();
   return (
     <Wrapper>
       <Typography variant="h4" color="text.primary">
-        Albums
+        Album #{albumId}
       </Typography>
     </Wrapper>
   );
 };
 
-export default AlbumsPage;
+export default AlbumPage;

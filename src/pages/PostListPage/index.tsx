@@ -1,15 +1,12 @@
-import { useSelector } from "react-redux";
-import { fetchPosts, filteredPostsSelector } from "../../core/store/postsSlice";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { fetchPosts, filteredPostsSelector } from "../../core/store/postsSlice";
 import { useThunkDispatch } from "../../core/store/store";
 import { StatusOfRequestEnum } from "../../core/types/enums/StatusOfRequestEnum";
-import Post from "../../components/simple/PostView";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import CircularProgress from "@mui/material/CircularProgress";
+import { Button, TextField, CircularProgress, Stack, Typography } from "@mui/material";
 import { Wrapper } from "../../containers/wrapper/Wrapper";
-import { Stack, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import Post from "../../components/simple/PostView";
 
 function PostsList() {
   const dispatch = useThunkDispatch();
@@ -30,7 +27,7 @@ function PostsList() {
         <TextField
           style={{ width: "610px" }}
           id="outlined-basic"
-          label="Filter"
+          label="Search"
           variant="outlined"
           size="small"
           onChange={(e) => setFilterString(e.target.value)}

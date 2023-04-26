@@ -5,7 +5,7 @@ import { StatusOfRequestEnum } from "../types/enums/StatusOfRequestEnum";
 import { Album } from "../types/modules/Album";
 import { Photo } from "../types/modules/Photo";
 
-const ALBUMS_URL = "https://jsonplaceholder.typicode.com/albums?_limit=5";
+const ALBUMS_URL = "https://jsonplaceholder.typicode.com/albums?_limit=4";
 
 interface AlbumsSlice {
   fetchAlbums: {
