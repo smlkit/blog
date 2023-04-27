@@ -1,5 +1,5 @@
-import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { StatusOfRequestEnum } from "../../core/types/enums/StatusOfRequestEnum";
 import { fetchSinglePost, fetchSinglePostSelector } from "../../core/store/postsSlice";
@@ -9,7 +9,6 @@ import Post from "../../components/simple/PostView";
 import CommentsList from "../../components/smart/CommentsList/CommentsList";
 import AddCommentForm from "../../components/smart/AddCommentForm/AddCommentForm";
 import { Wrapper } from "../../containers/wrapper";
-
 import { Button, CircularProgress, Stack } from "@mui/material";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 
@@ -38,8 +37,10 @@ const SinglePost = () => {
         </Button>
         {post && statusPost === StatusOfRequestEnum.SUCCESS && <Post post={post} />}
       </Stack>
-      <AddCommentForm postId={Number(postId)} />
-      {comments && statusComments === StatusOfRequestEnum.SUCCESS && <CommentsList comments={comments} />}
+      <AddCommentForm postId={Number(postId)} show={true} />
+      {comments && statusComments === StatusOfRequestEnum.SUCCESS && (
+        <CommentsList comments={comments} show={true} />
+      )}
       {(statusPost === StatusOfRequestEnum.LOADING || statusComments === StatusOfRequestEnum.LOADING) && (
         <CircularProgress />
       )}

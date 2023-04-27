@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchPosts, filteredPostsSelector } from "../../core/store/postsSlice";
 import { useThunkDispatch } from "../../core/store/store";
 import { StatusOfRequestEnum } from "../../core/types/enums/StatusOfRequestEnum";
-import { Button, TextField, CircularProgress, Stack, Typography } from "@mui/material";
+import { Button, TextField, CircularProgress, Stack, Typography, Grow } from "@mui/material";
 import { Wrapper } from "../../containers/wrapper";
 import Post from "../../components/simple/PostView";
 
@@ -12,7 +12,17 @@ function PostsList() {
   const dispatch = useThunkDispatch();
   const navigate = useNavigate();
   const [filterString, setFilterString] = useState<string>("");
+  const [show, setShow] = useState(false);
   const { data: posts, error, status } = useSelector(filteredPostsSelector(filterString));
+
+  useEffect(() => {
+    if (status === StatusOfRequestEnum.SUCCESS) {
+      setShow(true);
+    }
+    if (filterString && posts.length === 0) {
+      setShow(false);
+    }
+  }, [status, filterString]);
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -39,17 +49,19 @@ function PostsList() {
       </Stack>
 
       {status === StatusOfRequestEnum.SUCCESS && (
-        <Stack spacing={2}>
-          {posts.map((post) => (
-            <Post
-              post={post}
-              key={post.id}
-              goTo={() => {
-                navigate(`/posts/${post.id}`);
-              }}
-            />
-          ))}
-        </Stack>
+        <Grow in={show} mountOnEnter unmountOnExit>
+          <Stack spacing={2}>
+            {posts.map((post) => (
+              <Post
+                post={post}
+                key={post.id}
+                goTo={() => {
+                  navigate(`/posts/${post.id}`);
+                }}
+              />
+            ))}
+          </Stack>
+        </Grow>
       )}
 
       {status === StatusOfRequestEnum.LOADING && <CircularProgress />}
