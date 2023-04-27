@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { addNewPost } from "../../core/store/postsSlice";
 import { Post } from "../../core/types/modules/Post";
 import { useThunkDispatch } from "../../core/store/store";
-import { Wrapper } from "../../containers/wrapper/Wrapper";
+import { Wrapper } from "../../containers/wrapper";
 import { Typography, TextField, Button, Stack, Box } from "@mui/material";
 
 const AddPostForm = () => {
@@ -25,7 +25,7 @@ const AddPostForm = () => {
 
   const onSavePost = () => {
     if (canSavePost) {
-      navigate("/");
+      navigate("/posts");
       dispatch(addNewPost(post));
       setTitle("");
       setBody("");

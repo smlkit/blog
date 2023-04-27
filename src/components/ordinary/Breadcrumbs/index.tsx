@@ -7,12 +7,11 @@ import { StyledLink } from "../../smart/nav/StyledLink";
 const BreadcrumbsComponent = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
-  const homename = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
 
   return (
     <Breadcrumbs aria-label="breadcrumb">
       <StyledLink to="/">
-        <Typography color="text.secondary">{homename}</Typography>
+        <Typography color="text.secondary">home</Typography>
       </StyledLink>
 
       {pathnames.map((value, index) => {

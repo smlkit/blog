@@ -5,7 +5,7 @@ import { fetchPosts, filteredPostsSelector } from "../../core/store/postsSlice";
 import { useThunkDispatch } from "../../core/store/store";
 import { StatusOfRequestEnum } from "../../core/types/enums/StatusOfRequestEnum";
 import { Button, TextField, CircularProgress, Stack, Typography } from "@mui/material";
-import { Wrapper } from "../../containers/wrapper/Wrapper";
+import { Wrapper } from "../../containers/wrapper";
 import Post from "../../components/simple/PostView";
 
 function PostsList() {

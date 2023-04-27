@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { Container } from "../../../containers/container";
-import { NavBar } from "../../../containers/navbar/Navbar";
+import { NavBar } from "../../../containers/navbar";
 import { ColorModeContext } from "../../../core/theme/CustomThemeProvider";
 import BreadcrumbsComponent from "../../ordinary/Breadcrumbs";
 import { MUISwitch } from "../../ui/ThemeSwitch";

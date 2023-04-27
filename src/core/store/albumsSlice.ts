@@ -5,7 +5,7 @@ import { StatusOfRequestEnum } from "../types/enums/StatusOfRequestEnum";
 import { Album } from "../types/modules/Album";
 import { Photo } from "../types/modules/Photo";
 
-const ALBUMS_URL = "https://jsonplaceholder.typicode.com/albums?_limit=4";
+const ALBUMS_URL = "https://jsonplaceholder.typicode.com/albums";
 
 interface AlbumsSlice {
   fetchAlbums: {
@@ -37,7 +37,20 @@ export const fetchAlbums = createAsyncThunk<Album[], undefined, { rejectValue: s
   "posts/fetchAlbums",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(ALBUMS_URL);
+      const response = await axios.get(`${ALBUMS_URL}?_limit=4`);
+      return response.data;
+    } catch (error) {
+      if (isAxiosError(error)) return rejectWithValue(error.message);
+      return rejectWithValue("unknown error");
+    }
+  }
+);
+
+export const fetchAlbumPhotos = createAsyncThunk<Photo[], string, { rejectValue: string }>(
+  "posts/fetchAlbumsPhotos",
+  async (albumId, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${ALBUMS_URL}/${albumId}/photos?_limit=15`);
       return response.data;
     } catch (error) {
       if (isAxiosError(error)) return rejectWithValue(error.message);
@@ -66,6 +79,21 @@ const albumSlice = createSlice({
         state.fetchAlbums.error = action.payload || "unknown error";
         state.fetchAlbums.status = StatusOfRequestEnum.ERROR;
         state.fetchAlbums.data = [];
+      })
+      .addCase(fetchAlbumPhotos.pending, (state) => {
+        state.fetchAlbumPhotos.status = StatusOfRequestEnum.LOADING;
+        state.fetchAlbumPhotos.error = null;
+        state.fetchAlbumPhotos.data = [];
+      })
+      .addCase(fetchAlbumPhotos.fulfilled, (state, action) => {
+        state.fetchAlbumPhotos.status = StatusOfRequestEnum.SUCCESS;
+        state.fetchAlbumPhotos.error = null;
+        state.fetchAlbumPhotos.data = action.payload;
+      })
+      .addCase(fetchAlbumPhotos.rejected, (state, action) => {
+        state.fetchAlbumPhotos.error = action.payload || "unknown error";
+        state.fetchAlbumPhotos.status = StatusOfRequestEnum.ERROR;
+        state.fetchAlbumPhotos.data = [];
       });
   },
 });
@@ -73,5 +101,6 @@ const albumSlice = createSlice({
 const selfSelector = (state: RootState) => state.albums;
 
 export const fetchAlbumsSelector = createSelector(selfSelector, (state) => state.fetchAlbums);
+export const fetchAlbumPhotosSelector = createSelector(selfSelector, (state) => state.fetchAlbumPhotos);
 
 export default albumSlice.reducer;

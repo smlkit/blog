@@ -8,7 +8,7 @@ import { useThunkDispatch } from "../../core/store/store";
 import Post from "../../components/simple/PostView";
 import CommentsList from "../../components/smart/CommentsList/CommentsList";
 import AddCommentForm from "../../components/smart/AddCommentForm/AddCommentForm";
-import { Wrapper } from "../../containers/wrapper/Wrapper";
+import { Wrapper } from "../../containers/wrapper";
 
 import { Button, CircularProgress, Stack } from "@mui/material";
 import ArrowBack from "@mui/icons-material/ArrowBack";

@@ -6,7 +6,6 @@ export const Wrapper = styled("div")({
   gap: "40px",
   padding: "30px 0",
   alignItems: "center",
-  // justifyContent: "center",
   flexDirection: "column",
   minHeight: "100vh",
 });

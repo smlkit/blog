@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Button, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Wrapper } from "../../containers/wrapper/Wrapper";
+import { Wrapper } from "../../containers/wrapper";
 
 const HomePage = () => {
   const navigate = useNavigate();
