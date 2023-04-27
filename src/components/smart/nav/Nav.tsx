@@ -28,7 +28,10 @@ const Nav = () => {
             </Box>
           </Stack>
           <Stack direction="row" width={200} gap={4}>
-            <MUISwitch onClick={() => toggleTheme.toggleColorMode()}></MUISwitch>
+            <MUISwitch
+              checked={localStorage.getItem("theme") === "dark"}
+              onClick={() => toggleTheme.toggleColorMode()}
+            ></MUISwitch>
             <Button variant="outlined" onClick={goToPage}>
               New post
             </Button>

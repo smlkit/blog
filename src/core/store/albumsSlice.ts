@@ -37,7 +37,7 @@ export const fetchAlbums = createAsyncThunk<Album[], undefined, { rejectValue: s
   "posts/fetchAlbums",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${ALBUMS_URL}?_limit=4`);
+      const response = await axios.get(`${ALBUMS_URL}?_limit=6`);
       return response.data;
     } catch (error) {
       if (isAxiosError(error)) return rejectWithValue(error.message);

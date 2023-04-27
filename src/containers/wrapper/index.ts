@@ -7,5 +7,6 @@ export const Wrapper = styled("div")({
   padding: "30px 0",
   alignItems: "center",
   flexDirection: "column",
-  minHeight: "100vh",
+  // minHeight: "100vh",
+  minHeight: "90%",
 });

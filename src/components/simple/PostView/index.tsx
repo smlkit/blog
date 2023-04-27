@@ -16,7 +16,7 @@ const PostView: FC<PostViewProps> = ({ post, goTo }) => {
     <Card variant="outlined" sx={{ maxWidth: 700, minWidth: 700, padding: 1.5 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          post №{post.id}
+          post #{post.id}
         </Typography>
         <Typography variant="h5" component="div" gutterBottom>
           {post.title}
