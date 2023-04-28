@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchPosts, filteredPostsSelector } from "../../core/store/postsSlice";
@@ -28,6 +28,10 @@ function PostsList() {
     dispatch(fetchPosts());
   }, []);
 
+  const goTo = useCallback((arg: number) => {
+    navigate(`/posts/${arg}`);
+  }, []);
+
   return (
     <Wrapper>
       <Typography variant="h4" color="text.primary">
@@ -35,6 +39,7 @@ function PostsList() {
       </Typography>
       <Stack direction="row" spacing={2}>
         <TextField
+          autoComplete="off"
           style={{ width: "610px" }}
           id="outlined-basic"
           label="Search"
@@ -52,13 +57,7 @@ function PostsList() {
         <Grow in={show} mountOnEnter unmountOnExit>
           <Stack spacing={2}>
             {posts.map((post) => (
-              <Post
-                post={post}
-                key={post.id}
-                goTo={() => {
-                  navigate(`/posts/${post.id}`);
-                }}
-              />
+              <Post post={post} key={post.id} goTo={goTo} />
             ))}
           </Stack>
         </Grow>
