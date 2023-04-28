@@ -25,7 +25,7 @@ const AlbumsPage = () => {
           {albums.map((item) => (
             <AlbumView
               key={item.id}
-              photoUrl="https://via.placeholder.com/600/51aa97"
+              photoUrl="https://via.placeholder.com/600/4e557c"
               title={item.title}
               id={item.id}
             ></AlbumView>
